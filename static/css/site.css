@@ -1,0 +1,36 @@
+.banner {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.thumbnail {
+    position: relative;
+}
+
+.thumbnail img {
+    display: block;
+    width: auto;
+    height: auto;
+}
+
+.carousel-caption{
+    color: White;
+}
+
+.w-100 carousel-inner{
+    height: 100%;
+    align-items: center;
+}
+
+.top-buffer {
+    margin-top:20px;
+}
