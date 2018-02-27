@@ -1,7 +1,3 @@
-
-var albumBucketName = 'neil-life';
-var delimiter = '/';
-var prefix = 'katara/';
 var bucketRegion = 'us-east-1';
 var IdentityPoolId = 'us-east-1:d7fe84e1-7d9d-4171-8eb5-334d2e277891';
 
@@ -12,24 +8,20 @@ AWS.config.update({
     })
 });
 
-var s3 = new AWS.S3({
-    apiVersion: '2006-03-01',
-    params: {
-        Bucket: albumBucketName,
-        Delimiter: delimiter,
-        Prefix: prefix
-    }
-});
+var s3 = new AWS.S3();
+var albumBucketName = "neil-life";
+var delimiter = '/';
+var prefix = 'Katara/';
 
 var params = {
-    Bucket: "neil-life",
-    Delimiter: '/',
-    Prefix: 'Katara/'
+     Bucket: albumBucketName,
+     Delimiter: delimiter,
+     Prefix: prefix
 }
 
 function getList() {
     options = { scope : 'profile' };
-    console.log("getlist");
+    console.log(params);
     s3.listObjects(params, function (err, data) {
         if(err)throw err;
         else
