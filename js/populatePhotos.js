@@ -8,20 +8,22 @@ AWS.config.update({
     })
 });
 
-var s3 = new AWS.S3();
-var albumBucketName = "neil-life";
-var delimiter = '/';
-var prefix = 'Katara/';
-
-var params = {
-     Bucket: albumBucketName,
-     Delimiter: delimiter,
-     Prefix: prefix
-}
 
 function getList() {
+    var s3 = new AWS.S3();
+    category = document.getElementById('pagecategory');
+    console.log(category.attributes.class.value);
+    var prefix = category.attributes.class.value + "/";
+    var albumBucketName = "neil-life";
+    var delimiter = '/';
+
+    var params = {
+        Bucket: albumBucketName,
+        Delimiter: delimiter,
+        Prefix: prefix
+    }
+
     options = { scope : 'profile' };
-    console.log(params);
     s3.listObjects(params, function (err, data) {
         if(err)throw err;
         else
@@ -30,7 +32,6 @@ function getList() {
             for (i = 0; i < data.Contents.length; i++) {
                 urls[i] = data.Contents[i].Key;
             }
-            //0th element is the folder if a subfolder
         }
         populate(urls);
     });
@@ -50,4 +51,4 @@ function populate(result) {
         div.appendChild(colDiv);
     }
 }
-document.ready = getList();
+window.onload = getList();
